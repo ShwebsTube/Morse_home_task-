@@ -1,13 +1,17 @@
+#!/usr/bin/python 
 import socket
 
 
+
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.bind(('0.0.0.0',32768))
-s.listen()
+s.bind(('0.0.0.0',9994))
+s.listen(5)
 
-
+#morseCode = {"0":"-----","1":".----","2":"..---","3":"...--","4":"....-","5":".....","6":"-....","7":"--...","8":"---..","9":"----.",".":"'.-.-.-'"}
 def str2morse(x):
     
+   
+
     if x == '0':
         return '-----'
     elif x == '1':
@@ -30,25 +34,11 @@ def str2morse(x):
         return '----.'
     elif x == '.':
         return '-.-.-'
-        
-        
-while True:
-    
-    conn, addr = s.accept()
-    ip = str(addr[0])
-    print(ip)
-    m = " "
-    ip = ip.strip()
-    for x in ip:
-        m += str2morse(x)
-    conn.send(str(m))
-    conn.close()        
 
 
 while True:
     
     conn, addr = s.accept()
-    
     ip = str(addr[0])
     print(ip)
     m = " "
